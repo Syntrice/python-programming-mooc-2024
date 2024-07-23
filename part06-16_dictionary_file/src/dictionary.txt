@@ -1,0 +1,2 @@
+laukku - bag
+auto - car
