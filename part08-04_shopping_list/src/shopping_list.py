@@ -19,3 +19,10 @@ class ShoppingList:
 # -------------------------
 # Write your solution here:
 # -------------------------
+
+def total_units(my_list: ShoppingList):
+    total_units = 0
+    for item in my_list.products:
+        total_units += item[1]
+        
+    return total_units
