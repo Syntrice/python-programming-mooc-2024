@@ -22,7 +22,12 @@ class ShoppingList:
 
 def total_units(my_list: ShoppingList):
     total_units = 0
+<<<<<<< Updated upstream
     for item in my_list.products:
         total_units += item[1]
         
+=======
+    for product in my_list.products:
+        total_units += product[1]
+>>>>>>> Stashed changes
     return total_units
