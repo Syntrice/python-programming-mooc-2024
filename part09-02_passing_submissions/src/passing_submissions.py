@@ -9,3 +9,11 @@ class ExamSubmission:
         return f'ExamSubmission (examinee: {self.examinee}, points: {self.points})'
 
 # # WRITE YOUR SOLUTION HERE:
+
+def passed(submissions: list[ExamSubmission], lowest_passing: int):
+    result = []
+    for submission in submissions:
+        if submission.points >= lowest_passing:
+            result.append(submission)
+            
+    return result
