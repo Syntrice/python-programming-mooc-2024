@@ -14,4 +14,4 @@ class Person:
         self.pet = pet
 
     def __str__(self):
-        return self.name
+        return f"{self.name}, whose pal is {self.pet.name}, a {self.pet.description}"
