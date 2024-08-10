@@ -234,7 +234,7 @@ block. The following row should be moved:
                 self.fail('Class should not have public attributes. ' +
                     f'\nNow it has a public attribute {att}')
 
-        r.euros = 1000        
+        r.__euros = 1000        
         test = "1000.50 eur"
         self.assertTrue(str(r) != test, f'Expression money.euros = 1000 should ' + 
         f'not set the value of Money type objec money.\n The attribute should be protected!')
