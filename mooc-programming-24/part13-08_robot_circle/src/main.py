@@ -1,53 +1,55 @@
-# WRITE YOUR SOLUTION HERE:
-# WRITE YOUR SOLUTION HERE:
-
-"""
-
-For this exercise, I created some boilerplate code to allow easy complition of the future 
-exercises. That's why it might seem a bit over the top for this particular exercise.
-Might be good to make some of the attributes private or protected.
-"""
-
 import pygame
-
 
 WINDOW_WIDTH, WINDOOW_HEIGHT = 640, 420
 FPS = 60
+import math
 
 
-class Application:
+class GameApplication:
+
     def __init__(self) -> None:
-
         pygame.init()
-
         self.window = pygame.display.set_mode((WINDOW_WIDTH, WINDOOW_HEIGHT))
         self.clock = pygame.time.Clock()
 
-        self.objects: list[Object] = []
+        self.game_objects: list[Object] = []
+        self.game_images: dict[str, pygame.Surface] = {}
 
-        self.load_sprites()
+        self.load_images()
         self.create_objects()
+
         self.run()
 
-    def load_sprites(self) -> None:
-        self.robotSprite = pygame.image.load("robot.png")
+    def load_images(self) -> None:
+        self.game_images["robot"] = pygame.image.load("robot.png")
 
     def create_objects(self) -> None:
-        self.objects.append(Object(self.robotSprite, x=0, y=100, xvel=2, yvel=0))
-        self.objects.append(Object(self.robotSprite, x=0, y=200, xvel=4, yvel=0))
+        for i in range(10):
+            self.game_objects.append(CircularRobot(self.game_images["robot"], WINDOW_WIDTH // 2, WINDOOW_HEIGHT // 2, 150, 0.01, math.radians(36 * i)))
+
+
 
     def update(self) -> None:
+
+        # monitor for exit command
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit()
 
-        for obj in self.objects:
+        # update objects
+        for obj in self.game_objects:
             obj.update_position()
 
     def render(self) -> None:
+
+        # clear window
         self.window.fill((0, 0, 0))
-        for obj in self.objects:
-            self.window.blit(obj.sprite, (obj.x, obj.y))
+
+        # render objects
+        for obj in self.game_objects:
+            self.window.blit(obj.image, (obj.x, obj.y))
+
+        # render display
         pygame.display.flip()
 
     def run(self) -> None:
@@ -58,53 +60,53 @@ class Application:
 
 
 class Object:
+
     def __init__(
         self,
-        sprite: pygame.Surface,
+        image: pygame.Surface,
         x: int = 0,
         y: int = 0,
-        xvel: int = 0,
-        yvel: int = 0,
+        x_vel: int = 0,
+        y_vel: int = 0,
     ) -> None:
-
+        self.image = image
         self.x = x
         self.y = y
-        self.xvel = xvel
-        self.yvel = yvel
-        self.sprite = sprite
+        self.x_vel = x_vel
+        self.y_vel = y_vel
 
-    def update_position(self):
-        self.x += self.xvel
-        self.y += self.yvel
+    def update_position(self) -> None:
+        self.x += self.x_vel
+        self.y += self.y_vel
 
-    def window_collision_bounce(self):
-        if self.xvel > 0 and self.x + self.sprite.get_width() > WINDOW_WIDTH:
-            self.xvel = -self.xvel
-        elif self.xvel < 0 and self.x <= 0:
-            self.xvel = -self.xvel
 
-        if self.yvel > 0 and self.y + self.sprite.get_height() > WINDOOW_HEIGHT:
-            self.yvel = -self.yvel
-        elif self.yvel < 0 and self.y <= 0:
-            self.yvel = -self.yvel
-            
-    def window_collison_follow_perimiter(self):
-        # moves clockwise round the permiter once hit
-        if self.xvel > 0 and self.x + self.sprite.get_width() > WINDOW_WIDTH:
-            self.yvel = self.xvel
-            self.xvel = 0
-        elif self.xvel < 0 and self.x <= 0:
-            self.yvel = self.xvel
-            self.xvel = 0
+class CircularRobot(Object):
 
-        if self.yvel > 0 and self.y + self.sprite.get_height() > WINDOOW_HEIGHT:
-            self.xvel = -self.yvel
-            self.yvel = 0
-        elif self.yvel < 0 and self.y <= 0:
-            self.xvel = -self.yvel
-            self.yvel = 0
+    def __init__(
+        self,
+        image: pygame.Surface,
+        origin_x: int,
+        origin_y: int,
+        orbit_radius: int,
+        angular_velocity: float,
+        angular_displacement: float = 0,
+    ) -> None:
+        self.orbit_radius = orbit_radius
+        self.origin_x = origin_x - image.get_width() // 2
+        self.origin_y = origin_y - image.get_height() //2
+        self.angular_velocity = angular_velocity
+        self.angular_displacement = angular_displacement
         
+        x = int(self.orbit_radius * math.cos(self.angular_displacement)) + self.origin_x
+        y = int(self.orbit_radius * math.sin(self.angular_displacement)) + self.origin_y
+
+        super().__init__(image, x, y, 0, 0)
+
+    def update_position(self) -> None:
+        self.angular_displacement += self.angular_velocity
+        self.x = int(self.orbit_radius * math.cos(self.angular_displacement)) + self.origin_x
+        self.y = int(self.orbit_radius * math.sin(self.angular_displacement)) + self.origin_y
 
 
 if __name__ == "__main__":
-    game = Application()
+    game = GameApplication()
