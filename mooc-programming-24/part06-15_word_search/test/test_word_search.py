@@ -45,14 +45,14 @@ block. The following code should be moved:
         try:
             from src.word_search import find_words
         except:
-            self.assertTrue(False, "Your program should contain a function word_search(search_term: str)")
+            self.assertTrue(False, "Your program should contain a function find_words(search_term: str)")
         
         try:
             val = find_words("cat")
         except:        
-            self.assertTrue(False, 'Plese ensure that the following function call works: word_search("cat")')         
+            self.assertTrue(False, 'Plese ensure that the following function call works: find_words("cat")')         
         taip = str(type(val)).replace("<class '", '').replace("'>","")
-        self.assertTrue(type(val) == list, f'Function word_search("cat") should return a list, now it returns {val} which is of type {taip}.')
+        self.assertTrue(type(val) == list, f'Function find_words("cat") should return a list, now it returns {val} which is of type {taip}.')
 
     def test_2_search_no_special_chars(self):
         test_case = ("cat")

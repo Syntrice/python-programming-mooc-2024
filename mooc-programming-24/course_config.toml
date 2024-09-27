@@ -666,7 +666,7 @@ checksum = "f394a67c340097c6605ec49d86ae6076"
 
 [exercises.part06-15_word_search]
 id = 228888
-checksum = "b7de529d75427080d1e9447e7e8d28ea"
+checksum = "d8921112956d26782ac7f20887d9f309"
 
 [exercises.part06-16_dictionary_file]
 id = 228874
@@ -738,11 +738,11 @@ checksum = "df6ec1027c08acfb1ee3ca6ccea36daf"
 
 [exercises.part07-14_who_cheated]
 id = 228959
-checksum = "df7fecb471d23c4506bfeecb2fe8f8ae"
+checksum = "5dd42233d4452867df18c4f324ef9647"
 
 [exercises.part07-15_who_cheated_2]
 id = 228961
-checksum = "cfb96f635f2cadc130df768ccce671ff"
+checksum = "872f68aaaf37df4e83532c31d01f9b08"
 
 [exercises.part07-16_spellchecker_2]
 id = 228949
@@ -1131,7 +1131,3 @@ checksum = "66173cb6a00b77872dab0f749557510c"
 [exercises.part13-17_asteroids]
 id = 228847
 checksum = "0591dcc6b479ddb33bdcb53729753f5c"
-
-[exercises.part14-01_own_game]
-id = 228838
-checksum = "67f3f5f2256d9b95585949dffb14b93c"
