@@ -1,8 +1,8 @@
 # Python Programming MOOC 2024
 
-This repository contains my solutions to the University of Helsinki's Python Programming MOOC 2024, which can be found here: https://programming-24.mooc.fi/.
+This repository contains my solutions to the University of Helsinki's Python Programming MOOC 2024, which can be found here: https://programming-24.mooc.fi/. Unfortunately, these exercises were completed before I was fully competent in making regular, clear commits, so there is no clear timeline of completion.
 
-The course is split into two sections of seven parts. "Introduction to Programming" covers parts 1-7, while "Advanced Course in Programming" covers parts 8-14. Belpow is an outline of the course, highlighting which topics I covered by completing these exercises.
+The course is split into two sections of seven parts. "Introduction to Programming" covers parts 1-7, while "Advanced Course in Programming" covers parts 8-14. Below is an outline of the course, highlighting which topics I covered by completing these exercises.
 
 ## Introduction to Programming
 
